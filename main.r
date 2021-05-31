@@ -1,24 +1,17 @@
-```{r, eval=FALSE, include=TRUE}
-"Protocolo:
+## ---- eval=FALSE, include=TRUE--------------------------------------------------
+## "Protocolo:
+## 
+## 1. Daniel felipe Villa Rengifo
+## 
+## 2. Lenguaje: R
+## 
+## 3. Tema: Formas de eliminar la informacion que falta o remplazarla
+## 
+## 4. Fuentes:
+##    https://cran.r-project.org/web/packages/AmesHousing/AmesHousing.pdf"
 
-1. Daniel felipe Villa Rengifo
 
-2. Lenguaje: R
-
-3. Tema: Formas de eliminar la informacion que falta o remplazarla
-
-4. Fuentes:
-   https://cran.r-project.org/web/packages/AmesHousing/AmesHousing.pdf"
-```
-
-
-Este replit es en remplazo al de regresión lineal, cambiando el tema por:
-
-> Formas de eliminar la informacion que falta o remplazarla
-
-Trabajaremos con un archivo csv, con valores faltantes o NA
-
-```{r}
+## -------------------------------------------------------------------------------
 # lectura de la base de datos 
 housing.data <- read.csv("housing-with-missing-value.csv",
                          header = TRUE, stringsAsFactors = FALSE)
@@ -37,9 +30,9 @@ summary(housing.data)
 # se puede pensar algun tipo de correlacion entre las variables 
 
 
-```
 
-```{r}
+
+## -------------------------------------------------------------------------------
 # Existen varias formas de eliminar los na
 
 #1 eliminar todas las observaciones que contengan algún NA
@@ -56,9 +49,9 @@ summary(housing.data.1)
 # en el anterior sumary podemos ver que los na han sido iliminados 
 
 
-```
 
-```{r}
+
+## -------------------------------------------------------------------------------
 #2 opción
 # Eliminar los NAs de ciertas columnas 
 
@@ -84,9 +77,9 @@ summary(housing.data.2)
 # Del resumen anterior podemos ver que solo quedaron 35 NAs de rad.
 
 
-```
 
-```{r}
+
+## -------------------------------------------------------------------------------
 # Opción 3
 # Eliminar toda una columna
 # Esto se haria si una columna tiene muchos Nas y  o es de mucha importacia para la investigacion 
@@ -106,9 +99,9 @@ summary(housing.data)
 
 drops <- c("rad", "ptratio")# Vector de columnas de las variables a las que les voy a eliminar NAs
 housing.data.3 <- housing.data[,!(names(housing.data) %in% drops)]
-```
 
-```{r}
+
+## -------------------------------------------------------------------------------
 # FORMA MENOS AGRESIVA 
 
 # Una opcion no tan barbara de lidiar con NAs es remplazarla por algún estadistidico o valor aleatorio 
@@ -118,10 +111,9 @@ housing.data.3 <- housing.data[,!(names(housing.data) %in% drops)]
 #install.packages("Hmisc") "<- instale de ser necesario"
 library(Hmisc)
 
-```
 
 
-```{r}
+## -------------------------------------------------------------------------------
 #  creo una copia de la base de datos
 housing.data.copy1 <- housing.data
 # cambio los na por el promedio de las variables 
@@ -130,9 +122,9 @@ housing.data.copy1$rad <- impute(housing.data.copy1$rad, mean)
 
 
 summary(housing.data.copy1)
-```
 
-```{r}
+
+## -------------------------------------------------------------------------------
 
 # cambio los na por el promedio de las variables 
 housing.data.copy2 <- housing.data
@@ -140,21 +132,17 @@ housing.data.copy2 <- housing.data
 housing.data.copy2$ptratio <- impute(housing.data.copy2$ptratio, median)
 housing.data.copy2$rad <- impute(housing.data.copy2$rad, median)
 summary(housing.data.copy2)
-```
 
-```{r}
+
+## -------------------------------------------------------------------------------
 # usar un valor predifinido es otra opcion:
 housing.data.copy2 <- housing.data
 housing.data.copy2$ptratio <- impute(housing.data.copy2$ptratio, 18)
 housing.data.copy2$rad <- impute(housing.data.copy2$rad, 7)
 summary(housing.data.copy2)
-```
 
 
-# la función impute ayuda mucho para remplazar los na sin tener que acceder a las posiciones
-
-
-```{r}
+## -------------------------------------------------------------------------------
 
 #install.packages("mice")
 library(mice)
@@ -168,10 +156,9 @@ dev.off()
 # de lo anterior podemos ver que 431 valores lo tienen todo, 35 donde falta rad pero no ptratio, 35 viceversa y 5 valores donde falta rad y ptratio 
 
 
-```
 
 
-```{r}
+## -------------------------------------------------------------------------------
 # Otra forma es visualizar la informacion 
 # Se puede hacer con una librearia VIM
 
@@ -191,4 +178,3 @@ aggr(housing.data,
 ) 
 
 dev.off()
-```

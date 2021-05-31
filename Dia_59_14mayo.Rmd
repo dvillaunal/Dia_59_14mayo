@@ -1,3 +1,14 @@
+---
+title: "Dia_59_14mayo"
+author: "Daniel Felipe Villa Rengifo"
+date: "29/5/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 ```{r, eval=FALSE, include=TRUE}
 "Protocolo:
 
@@ -191,4 +202,10 @@ aggr(housing.data,
 ) 
 
 dev.off()
+```
+
+
+```{r, eval=FALSE, include=FALSE}
+library(knitr)
+purl("Dia_59_14mayo.Rmd", "main.r")
 ```
